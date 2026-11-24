@@ -6,11 +6,15 @@
 
 - **PDM mic noise below 16 kHz.** `PDM.begin()` used the IDF default
   down-sampling mode (`I2S_PDM_DSR_8S`), which clocks the mic at
-  64 × fs: 512 kHz at 8 kHz, below the RAK18030's normal-mode range.
-  The quiet-room noise floor was about 16 dB higher than at 16 kHz.
-  Rates below 16 kHz now use `I2S_PDM_DSR_16S` (128 × fs, 1.024 MHz at
-  8 kHz), which measured the same floor as 16 kHz capture averaged
-  down to 8 kHz. Rates of 16 kHz and above are unchanged.
+  64 × fs: 512 kHz at 8 kHz, below the normal-mode clock range of all
+  three RAK1803x mics (RAK18030 from 1.0 MHz, RAK18032 from 1.1 MHz,
+  RAK18031 from 1.2 MHz). Measured on a RAK18032, the quiet-room noise
+  floor was about 16 dB higher than at 16 kHz. Rates below 16 kHz now
+  use `I2S_PDM_DSR_16S` (128 × fs, 1.024 MHz at 8 kHz), which measured
+  the same floor as 16 kHz capture averaged down to 8 kHz. Rates of
+  16 kHz and above are unchanged. 1.024 MHz is still just under the
+  RAK18032's and RAK18031's datasheet minimum; the ESP32-S3 can't clock
+  the mic higher at 8 kHz.
 
 ## 2.0.0 — RAK3112 audio path rewrite; TAS2560 fixes for all boards
 

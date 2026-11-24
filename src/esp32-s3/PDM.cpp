@@ -136,10 +136,11 @@ int PDMClass::begin(int channels, long sampleRate)
 
   i2s_pdm_rx_clk_config_t clk_cfg = I2S_PDM_RX_CLK_DEFAULT_CONFIG((uint32_t)sampleRate);
   // The default DSR_8S clocks the mic at 64 x fs: 1.024 MHz at 16 kHz but
-  // only 512 kHz at 8 kHz, below the RAK18030's normal-mode clock range.
-  // There its quiet-room floor was ~16 dB higher (bench: rms ~1900 vs ~300
-  // at x30 gain). DSR_16S (128 x fs) keeps the mic at >= 1.024 MHz below
-  // 16 kHz; it measured the same floor as 16 kHz + 2:1 averaging.
+  // only 512 kHz at 8 kHz, below the normal-mode clock range of every
+  // RAK1803x mic (RAK18030 >= 1.0 MHz, RAK18032 >= 1.1, RAK18031 >= 1.2).
+  // On a RAK18032 the quiet-room floor there was ~16 dB higher (bench: rms
+  // ~1900 vs ~300 at x30 gain). DSR_16S (128 x fs) gives 1.024 MHz at
+  // 8 kHz; it measured the same floor as 16 kHz + 2:1 averaging.
   if (sampleRate < 16000) clk_cfg.dn_sample_mode = I2S_PDM_DSR_16S;
 
   i2s_pdm_rx_gpio_config_t gpio_cfg = {};
