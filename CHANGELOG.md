@@ -25,7 +25,7 @@ TAS2560 support. The TAS2560 amplifier driver, shared by every board,
 gets several fixes from the datasheet (TI SLASE86E); where the datasheet
 and the bench disagreed, the bench won and the code comment says so.
 
-Bench-verified on RAK3112 + RAK19007 + RAK18003 + RAK18030 + RAK18060:
+Bench-verified on RAK3112 + RAK19007 + RAK18003 + RAK18032 + RAK18060:
 stereo WAVs at 8, 16, 22.05, 44.1, 48 and 96 kHz with correct speed and
 left/right, no hiss, silent after playback; mic and speaker running
 together in either start order at 8 and 16 kHz; recording to SD.
