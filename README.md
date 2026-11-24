@@ -412,7 +412,7 @@ Counters exposed for diagnostics: `dmaEvents()`, `droppedEvents()`,
   saturation. Software rather than hardware because ESP32-S3 doesn't
   define `SOC_I2S_SUPPORTS_PDM_RX_HP_FILTER`, so the IDF's
   `amplify_num` field literally isn't in `i2s_pdm_rx_slot_config_t` on
-  this SoC. Default ×1. The RAK18030's raw level is low, so recordings
+  this SoC. Default ×1. The RAK18032's raw level is low, so recordings
   usually need `setGain(80)` (×15); `RecordToSD` uses that.
 
   **Same name, different scale on RAK4631.** There the value goes to
